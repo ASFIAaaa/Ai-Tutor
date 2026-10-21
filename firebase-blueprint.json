@@ -1,0 +1,46 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "Student or educator profile in VisuaLearn",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "maxLength": 128 },
+        "displayName": { "type": "string", "maxLength": 100 },
+        "email": { "type": "string", "maxLength": 128 },
+        "preferredLevel": { "type": "string", "enum": ["little", "student", "advanced"] },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["uid", "displayName", "email", "preferredLevel", "createdAt", "updatedAt"]
+    },
+    "Lesson": {
+      "title": "Lesson",
+      "description": "Saved networking lesson with diagram and annotations",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "topic": { "type": "string", "maxLength": 200 },
+        "level": { "type": "string", "enum": ["little", "student", "advanced"] },
+        "explanationText": { "type": "string", "maxLength": 2000 },
+        "analogy": { "type": "string", "maxLength": 1000 },
+        "diagramJson": { "type": "string", "maxLength": 200000 },
+        "drawingsJson": { "type": "string", "maxLength": 500000 },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "topic", "level", "explanationText", "analogy", "diagramJson", "createdAt", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "User profile document owned exclusively by the authenticated user"
+    },
+    "/users/{userId}/lessons/{lessonId}": {
+      "schema": { "$ref": "#/entities/Lesson" },
+      "description": "Personal lesson history, diagram state, and whiteboard drawings"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "VisuaLearn",
+  "description": "Interactive AI tutor that teaches computer networking using text explanations, animated interactive diagrams, and a drawing whiteboard.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
